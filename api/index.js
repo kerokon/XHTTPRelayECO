@@ -71,6 +71,7 @@ export default async function handler(req, res) {
   const requestId = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
   const startedAt = Date.now();
   let slotAcquired = false;
+  let hitUpstreamTimeout = false;
 
   if (!TARGET_BASE) {
     res.statusCode = 500;
@@ -147,10 +148,8 @@ export default async function handler(req, res) {
 
     const hasBody = req.method !== "GET" && req.method !== "HEAD";
     const abortCtrl = new AbortController();
-    let hitUpstreamTimeout = false;
     const timeoutRef = setTimeout(() => {
       hitUpstreamTimeout = true;
-      // Avoid throwing from timeout callback on runtimes that mishandle abort reasons.
       try {
         abortCtrl.abort();
       } catch {}
@@ -461,4 +460,3 @@ function createThrottleTransform(limiter) {
     },
   });
 }
-
