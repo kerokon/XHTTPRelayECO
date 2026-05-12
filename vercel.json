@@ -5,7 +5,7 @@
   "functions": {
     "api/index.js": {
       "memory": 128,
-      "maxDuration": 60,
+      "maxDuration": 300,
 "regions": ["fra1"]
     }
   },
