@@ -6,7 +6,7 @@
     "api/index.js": {
       "memory": 128,
       "maxDuration": 300,
-"regions": ["fra1"]
+"regions": ["arn1"]
     }
   },
   "rewrites": [
